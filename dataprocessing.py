@@ -1,8 +1,11 @@
+"""Code for data processing and plotting of dataset"""
+
 import json
 import pandas as pd
 # import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import Counter
 # matplotlib.use('TkAgg')
 business_path = "./dataset/yelp_academic_dataset_business.json"
 review_path = "./dataset/yelp_academic_dataset_review.json"
@@ -68,7 +71,9 @@ def reviews_per_user():
 
 def reviews_per_business():
     businessDF = parse_json(business_path)
-    reviewCountList = businessDF['review_count'].tolist()
+    reviewCountList = businessDF['review_count'].to_numpy()
+    stateCountList = businessDF['state'].to_numpy()
+    reviewCountList = np.delete(reviewCountList, np.where(stateCountList == 'FL'))
     bins=[1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 2000, 5000]
     hist, bin_edges = np.histogram(reviewCountList, bins) # make the histogram
 
@@ -84,7 +89,15 @@ def reviews_per_business():
 
     plt.show()
 
-reviews_per_business()
+# reviews_per_business()
 # reviews_per_user()
 
+def reviews_per_state():
+    businessDF = parse_json(business_path)
+    stateCountList = businessDF['state'].to_numpy()
+    letter_counts = Counter(stateCountList)
+    df = pd.DataFrame.from_dict(letter_counts, orient='index')
+    df.plot(kind='bar')
+    plt.show()
 
+reviews_per_state()
