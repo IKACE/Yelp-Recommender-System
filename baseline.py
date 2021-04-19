@@ -14,7 +14,7 @@ businessIDList = businessDF['business_id'].to_numpy()
 businessIDList = businessIDList[np.where(stateList == 'GA')]
 businessIDList = businessIDList.tolist()
 reviewDF = reviewDF[reviewDF['business_id'].isin(businessIDList)]
-ratings = reviewDF['stars'].to_numpy()
+allRatings = reviewDF['stars'].to_numpy()
 # userID -> ratings, businessID -> ratings
 userIDCount = {}
 businessIDCount = {}
@@ -31,16 +31,23 @@ for index in reviewDF.index:
 for key in businessIDCount:
     ratings = businessIDCount[key]
     businessIDCount[key] = sum(ratings) / len(ratings)
-for key in userIDCount:
+for key in list(userIDCount):
     ratings = userIDCount[key]
-    userIDCount[key] = sum(ratings) / len(ratings)
-mu = np.mean(ratings)
+    if len(ratings) < 10:
+        userIDCount.pop(key, None)
+    else:
+        userIDCount[key] = sum(ratings) / len(ratings)
+mu = np.mean(allRatings)
 original_stdout = sys.stdout
-with open("baseline_results.txt", 'w') as f:
+with open("baseline_results_new.txt", 'w') as f:
     sys.stdout = f
     print("mean ratings in GA ", mu)
     print("==== businessID to avg rating ===")
     print(businessIDCount)
     print("==== userIDCount to avg rating ===")
     print(userIDCount)
+    print("==== userID that has more than or equal to 10 reviews ====")
+    print(userIDCount.keys())
+    print("==== all business id in GA ====")
+    print(businessIDCount.keys())
 sys.stdout = original_stdout
