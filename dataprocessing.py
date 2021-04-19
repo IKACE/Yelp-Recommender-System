@@ -73,7 +73,7 @@ def reviews_per_business():
     businessDF = parse_json(business_path)
     reviewCountList = businessDF['review_count'].to_numpy()
     stateCountList = businessDF['state'].to_numpy()
-    reviewCountList = np.delete(reviewCountList, np.where(stateCountList == 'FL'))
+    # reviewCountList = reviewCountList[np.where(stateCountList == 'MA')]
     bins=[1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 2000, 5000]
     hist, bin_edges = np.histogram(reviewCountList, bins) # make the histogram
 
@@ -100,4 +100,13 @@ def reviews_per_state():
     df.plot(kind='bar')
     plt.show()
 
-reviews_per_state()
+# reviews_per_state()
+# reviews_per_business()
+# businessDF = parse_json(business_path)
+# reviewDF = parse_json(review_path)
+# stateList = businessDF['state'].to_numpy()
+# businessIDList = businessDF['business_id'].to_numpy()
+# businessIDList = businessIDList[np.where(stateList == 'GA')]
+# businessIDList = businessIDList.tolist()
+# ratings = reviewDF[reviewDF['business_id'].isin(businessIDList)]['stars'].to_numpy()
+# mu = np.mean(ratings)
