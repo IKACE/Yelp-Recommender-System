@@ -110,3 +110,48 @@ def reviews_per_state():
 # businessIDList = businessIDList.tolist()
 # ratings = reviewDF[reviewDF['business_id'].isin(businessIDList)]['stars'].to_numpy()
 # mu = np.mean(ratings)
+
+def baseline_processing():
+        # # business in GA
+    # businessIDs = []
+    # # users rating >= 10 reviews in GA
+    # userIDs = []
+    # reviewDF = parse_json(review_path)
+    # reviewDF = reviewDF[reviewDF['business_id'].isin(businessIDs)]
+    # reviewDF = reviewDF[reviewDF['user_id'].isin(userIDs)]
+    # print("original df length", len(reviewDF.index))
+    # # sample for a test set
+    # reviewDFTest = reviewDF.sample(frac=0.1)
+    # print("test df length", len(reviewDFTest.index))
+    # testBusinessIDs = reviewDFTest['business_id'].tolist()
+    # reviewDF = reviewDF[~reviewDF['business_id'].isin(testBusinessIDs)]
+    # # sample for a val set
+    # reviewDFVal = reviewDF.sample(frac=0.1)
+    # print("val df length", len(reviewDFVal.index))
+    # valBusinessIDs = reviewDFVal['business_id'].tolist()
+    # reviewDF = reviewDF[~reviewDF['business_id'].isin(valBusinessIDs)]
+
+    # print("final train df length", len(reviewDF.index))
+    GA_restaurant_dict = {}
+    GA_user_dict = {}
+
+    with open('GA_restaurants_indices.json') as f:
+        GA_restaurant_dict = json.load(f)
+
+    with open('GA_users_indices.json') as f:
+        GA_user_dict = json.load(f)
+
+    GA_restaurant_IDs = list(GA_restaurant_dict)
+    GA_user_IDs = list(GA_user_dict)
+
+    reviewDF = parse_json(review_path)
+    print("=== Parsing complete! ===")
+    reviewDF = reviewDF[reviewDF['business_id'].isin(GA_restaurant_IDs)]
+    reviewDF = reviewDF[reviewDF['user_id'].isin(GA_user_IDs)]
+    print("=== Filtering complete! ===")
+    reviewDF['user_id'] = reviewDF['user_id'].map(GA_user_dict)
+    reviewDF['business_id'] = reviewDF['business_id'].map(GA_restaurant_dict)
+    # reviewDF.replace({'user_id': GA_user_dict}, inplace=True)
+    # reviewDF.replace({'business_id': GA_restaurant_dict}, inplace=True)
+    print("=== Replacing complete! ===")
+    reviewDF.to_csv("GA.csv")    

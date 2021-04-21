@@ -1,0 +1,3 @@
+Using SGD
+Estimating biases using sgd...
+RMSE: 1.2412
