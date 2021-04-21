@@ -19,6 +19,6 @@ with open('GA_users.json') as f:
     user_dict[user] = count
     count += 1
   out_file = open("GA_users_indices.json", "w") 
-  json.dump(restaurant_dict, out_file, indent = 6)
+  json.dump(user_dict, out_file, indent = 6)
   out_file.close()
 
