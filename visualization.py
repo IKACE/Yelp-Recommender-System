@@ -13,15 +13,17 @@ from surprise.model_selection import cross_validate
 from surprise import SVD
 import plotly.express as px
 import datapane as dp
-# 150 5 0.01 0.2
+
+# TODO: for plot 1, color restaurants by categories
+
+# old 150 5 0.01 0.2
+# new 100 15 0.02 0.2
 businessDF = parse_json(business_path)
 with open('GA_restaurants_indices.json') as f:
   GA_restaurant_dict = json.load(f)
 GA_ID2Rest_dict = {}
 for key in GA_restaurant_dict:
   GA_ID2Rest_dict[GA_restaurant_dict[key]] = key
-
-
 
 businessDF = businessDF[businessDF['business_id'].isin(GA_restaurant_dict)]
 reviewDF = pd.read_csv("GA.csv")

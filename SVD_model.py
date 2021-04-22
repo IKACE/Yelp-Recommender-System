@@ -24,10 +24,10 @@ with open('SVD_model_result.txt', 'w') as f:
     print("Finish loading data")
     candidateMeasures = {}
     paramChoices = {
-        'factor': [50, 100, 150],
-        'epoch': [5],
-        'lr_all': [0.002, 0.005, 0.01],
-        'reg_all': [0.2, 0.4, 0.8] 
+        'factor': [50, 100, 150, 200],
+        'epoch': [10, 15],
+        'lr_all': [0.002, 0.005, 0.008, 0.01, 0.02],
+        'reg_all': [0.2, 0.4, 0.6, 0.8] 
     }
     for f in paramChoices['factor']:
         for n in paramChoices['epoch']:

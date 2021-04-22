@@ -155,3 +155,14 @@ def baseline_processing():
     # reviewDF.replace({'business_id': GA_restaurant_dict}, inplace=True)
     print("=== Replacing complete! ===")
     reviewDF.to_csv("GA.csv")    
+
+# businessDF = parse_json(business_path)
+# businessDF.to_csv('business.csv')
+
+def generate_category_index():
+    businessDF = parse_json(business_path)
+    categoryList = businessDF['categories'].tolist()
+    print(categoryList[0].split(','))
+    # print(len(reviewCountList), len(reviewCountSet))
+
+generate_category_index()
