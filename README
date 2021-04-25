@@ -1,7 +1,7 @@
-This readme is a brief tutorial on how to run the project and what the codes are expected to do. In case of any question during running, please kindly contact chenqy@umich.edu and yilegu@umich.edu.
+This readme is a brief tutorial on how to run the project and re-produce the results in the report. In case of any question during running, please kindly contact chenqy@umich.edu and yilegu@umich.edu.
 
 Pre-requisite:
-1. Dataset: Yelp dataset, unzipped and put in the directory ./dataset. In ./dataset there should be five .json files. For example, the path to one of the .json file will be ./dataset/yelp_academic_dataset_business.json
+1. Dataset: Yelp dataset (https://www.yelp.com/dataset), unzipped and put in the directory ./dataset. In ./dataset there should be five .json files. For example, the path to one of the .json file will be ./dataset/yelp_academic_dataset_business.json. 
 
 2. Packages: Many of these are quite common packages and are likely to have been installed on users' platforms. In the case of missing a package, pip should install them fine.
 	json
@@ -17,20 +17,20 @@ Pre-requisite:
 	datapane
 
 How to run the project:
-1. "python3 filter_GA_restaurants_and_users.py" to get two files, "GA_restaurants.json" and "GA_users.json". This step filters our data of interest and limit the user and business data to a reasonable range as specified in the report.
+1. Run "python3 filter_GA_restaurants_and_users.py" to get two files, "GA_restaurants.json" and "GA_users.json". This step filters our data of interest and limit the user and business data to a reasonable range as specified in the report. Note that the processed json files are included as part of the dataset.
 
-2. "python3 GA_resturants_and_users_to_index.py" to create a mapping of users and businesses to their corresponding indices. You should have "GA_restaurants_indices.json" and "GA_users_indices.json" by then.
+2. Run "python3 GA_resturants_and_users_to_index.py" to create a mapping of users and businesses to their corresponding indices. You should have "GA_restaurants_indices.json" and "GA_users_indices.json" by then. Note that the processed json files are included as part of the dataset.
 
-3. "python3 datapreprocessing.py" to create the rating matrix R. It should a file called "GA.csv".
+3. "python3 datapreprocessing.py" defines several useful functions for processing the filtered data. Run function "GA_processing()" to create the rating matrix R. It should generate a file called "GA.csv". Note that due to the size of generated csv file, it is not included in the zip file.
 
-4. "python3 baseline_model.py" to run the baseline model and get corresponding metrics like RMSE.
+4. Run "python3 baseline_model.py" to use the baseline model and get corresponding metrics like RMSE. The results will be written to a file called "baseline_model_result.txt". 
 
-5. "python3 SVD_model.py" to run the SVD model and get the best set of hyperparameters and corresponding metrics like RMSE.
+5. Run "python3 SVD_model.py" to search for hyperparameters and get the best set of hyperparameters for SVD model. Training results with RMSE metrics will be written to a file called "SVD_model_result.txt".
 
-6. "python3 NMF_model.py" to run the NMF model and get the best set of hyperparameters and corresponding metrics like RMSE.
+6. Run "python3 NMF_model.py" to search for hyperparameters and get the best set of hyperparameters for NMF model. Training results with RMSE metrics will be written to a file called "NMF_model_result.txt".
 
-7. "python3 lighFM_model_FeatureBased.py" to run the feature-based lightFM model and corrsponding metrics like AUC score.
+7. Run "python3 lightFM_model_FeatureBased.py" to train the feature-based lightFM model and get corrsponding metrics like AUC score. Additionally, the code will generate the most similar categories for "American (Traditional)", "Japanese" and "Cafes".
 
-8. "python3 visualization.py" to run the visualization.
+8. When needed, run "python3 prediction_recall_k.py" with the best set of hyperparamters to get metrics like AUC score for baseline, SVD and NMF models.
 
-9. When needed, run "python3 prediction_recall_k.py" to get metrics like AUC score for all sorts of models.
+9. "python3 visualization.py" defines several functions to generate the plots in the report. Run function "generate_embeddings()" to generate the 2D embedding for SVD model.

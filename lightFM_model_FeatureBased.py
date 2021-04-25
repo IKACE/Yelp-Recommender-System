@@ -106,3 +106,11 @@ for tag in (u'American (Traditional)', u'Japanese', u'Cafes'):
     tag_id = all_categories.tolist().index(tag)
     print('Most similar tags for %s: %s' % (all_categories[tag_id],
                                             all_categories[get_similar_tags(model, tag_id)]))
+
+
+# Evaluation
+# surprise: rating prediction -> RMSE
+# lightFM: 1. 没有rating过的 -> negative 2. rating过的 ——> positive
+# interpretability: SVD: embedding , lightFM: category
+# AUC
+# RMSE， 
