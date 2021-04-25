@@ -1,12 +1,15 @@
 #! /bin/bash
 
+# we recommend you downloading our GA.csv and .json files as specified in README.md
+# in that case, comment line 8 to line 12 of this MAKEFILE.sh
+
 pip3 install numpy pandas matplotlib surprise lightfm sklearn plotly datapane &&
 
 python3 filter_GA_restaurants_and_users.py &&
 
 python3 GA_resturants_and_users_to_index.py && 
 
-python3 datapreprocessing.py && 
+python3 dataprocessing.py && 
 
 python3 baseline_model.py && 
 
