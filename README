@@ -1,0 +1,36 @@
+This readme is a brief tutorial on how to run the project and what the codes are expected to do. In case of any question during running, please kindly contact chenqy@umich.edu and yilegu@umich.edu.
+
+Pre-requisite:
+1. Dataset: Yelp dataset, unzipped and put in the directory ./dataset. In ./dataset there should be five .json files. For example, the path to one of the .json file will be ./dataset/yelp_academic_dataset_business.json
+
+2. Packages: Many of these are quite common packages and are likely to have been installed on users' platforms. In the case of missing a package, pip should install them fine.
+	json
+	numpy
+	pandas
+	collections
+	matplotlib
+	dataprocessing
+	surprise
+	lightfm
+	sklearn
+	plotly
+	datapane
+
+How to run the project:
+1. "python3 filter_GA_restaurants_and_users.py" to get two files, "GA_restaurants.json" and "GA_users.json". This step filters our data of interest and limit the user and business data to a reasonable range as specified in the report.
+
+2. "python3 GA_resturants_and_users_to_index.py" to create a mapping of users and businesses to their corresponding indices. You should have "GA_restaurants_indices.json" and "GA_users_indices.json" by then.
+
+3. "python3 datapreprocessing.py" to create the rating matrix R. It should a file called "GA.csv".
+
+4. "python3 baseline_model.py" to run the baseline model and get corresponding metrics like RMSE.
+
+5. "python3 SVD_model.py" to run the SVD model and get the best set of hyperparameters and corresponding metrics like RMSE.
+
+6. "python3 NMF_model.py" to run the NMF model and get the best set of hyperparameters and corresponding metrics like RMSE.
+
+7. "python3 lighFM_model_FeatureBased.py" to run the feature-based lightFM model and corrsponding metrics like AUC score.
+
+8. "python3 visualization.py" to run the visualization.
+
+9. When needed, run "python3 prediction_recall_k.py" to get metrics like AUC score for all sorts of models.
