@@ -21,6 +21,7 @@ This readme is a brief tutorial on how to run the project and re-produce the res
 ## MAKEFILE Usage
 Please do not run make commands on MAKEFILE since it is written in a bash style. Instead, please run "./MAKEFILE.sh" to run. You may need to run "chmod +x MAKEFILE.sh" to be able to run it as a script. Such way of running the project is equivalent to following the steps from 1 to 9 (i.e., if you run "./MAKEFILE.sh", then you won't need to go through step 1 to 9 one by one). Also note that some of the python files (specified in the below section) only define useful functions for users to run. In order to run the project correctly, the user has to define the functions he or she wants to run in the corresponding python file.
 
+## Step-to-Step Usage
 1. Run "python3 filter_GA_restaurants_and_users.py" to get two files, "GA_restaurants.json" and "GA_users.json". This step filters our data of interest and limit the user and business data to a reasonable range as specified in the report. Note that the processed json files are included as part of the dataset.
 
 2. Run "python3 GA_resturants_and_users_to_index.py" to create a mapping of users and businesses to their corresponding indices. You should have "GA_restaurants_indices.json" and "GA_users_indices.json" by then. Note that the processed json files are included as part of the dataset.
