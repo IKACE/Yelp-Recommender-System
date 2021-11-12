@@ -44,3 +44,17 @@ This readme is a brief tutorial on how to run the project and re-produce the res
 # MAKEFILE Usage
 
 Do not run make commands on MAKEFILE since it is written in a bash style. Also note that some of the python files (specified in the previous section) only define useful functions for users to run. In order to run the project correctly, the user has to define the functions he or she wants to run in the corresponding python file.
+
+# Results
+
+## Business Per State
+
+![](./plots/business_per_state_new.png)
+
+## 2D Embedding of Restaurants
+
+![](./plots/embeddings_new.png)
+
+## Scores
+
+![](./plots/scores.png)
