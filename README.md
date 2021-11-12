@@ -1,4 +1,6 @@
-# EECS 476 Final Project
+# Yelp Recommender System
+
+Implementation to predict users' ratings on Yelp dataset based on various recommender system implementations.
 
 This readme is a brief tutorial on how to run the project and re-produce the results in the report. In case of any question during running, please kindly contact chenqy@umich.edu and yilegu@umich.edu.
 
